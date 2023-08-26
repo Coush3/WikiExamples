@@ -1,0 +1,14 @@
+services:
+  bind9:
+    image: ubuntu/bind9
+    restart: always
+    ports:
+      - "53:53"
+      - "53:53/udp"
+    volumes:
+      - "./volumes/etc/bind/named.conf.local:/etc/bind/named.conf.local:ro"
+      - "./volumes/etc/bind/named.conf.options:/etc/bind/named.conf.options:ro"
+      - "./volumes/etc/bind/zones:/etc/bind/zones:ro"
+    environment:
+      - "TZ=Asia/Tokyo"
+      - "BIND9_USER=bind"
